@@ -1,0 +1,7 @@
+
+body{font-family:sans-serif;background:#f6f1ea;margin:0}
+.wrap{max-width:420px;margin:auto;padding:16px}
+.card{background:#fff;border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+button{padding:10px 14px;margin:6px;border:none;border-radius:10px}
+h1{text-align:center}
+p{text-align:center}

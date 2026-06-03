@@ -1,0 +1,22 @@
+const words=[
+{word:"abandon",meaning:"放弃"},
+{word:"ability",meaning:"能力"},
+{word:"able",meaning:"能够"},
+{word:"accept",meaning:"接受"},
+{word:"achieve",meaning:"实现"},
+{word:"across",meaning:"穿过"},
+{word:"action",meaning:"行动"},
+{word:"active",meaning:"积极的"},
+{word:"actual",meaning:"实际的"},
+{word:"address",meaning:"地址"},
+{word:"admit",meaning:"承认"},
+{word:"adult",meaning:"成年人"},
+{word:"advice",meaning:"建议"},
+{word:"affect",meaning:"影响"},
+{word:"afraid",meaning:"害怕的"},
+{word:"against",meaning:"反对"},
+{word:"agree",meaning:"同意"},
+{word:"allow",meaning:"允许"},
+{word:"almost",meaning:"几乎"},
+{word:"among",meaning:"在……之中"}
+];

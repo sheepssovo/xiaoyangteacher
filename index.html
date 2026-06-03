@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>小羊老师</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+<h1>🐑 小羊老师</h1>
+<p>每天监督飞鸟学英语</p>
+
+<div class="card">
+<h2>📖 今日单词</h2>
+<div id="word"></div>
+<div id="meaning"></div>
+<button onclick="nextWord()">换一个</button>
+<button onclick="saveWord()">收藏</button>
+</div>
+
+<div class="card">
+<h2>📚 生词本</h2>
+<ul id="saved"></ul>
+</div>
+
+<div class="card">
+<h2>🐑 小羊状态</h2>
+<p id="msg"></p>
+</div>
+</div>
+
+<script src="words.js"></script>
+<script>
+let current;
+
+const msgs=[
+"飞鸟，欢迎回来。",
+"今天学一个单词就够了。",
+"学习五分钟也是进步。",
+"不要偷偷摸鱼哦。"
+];
+
+document.getElementById("msg").innerText =
+msgs[Math.floor(Math.random()*msgs.length)];
+
+function nextWord(){
+ current=words[Math.floor(Math.random()*words.length)];
+ document.getElementById("word").innerHTML="<b>"+current.word+"</b>";
+ document.getElementById("meaning").innerText=current.meaning;
+}
+function saveWord(){
+ let arr=JSON.parse(localStorage.getItem("savedWords")||"[]");
+ arr.push(current.word);
+ localStorage.setItem("savedWords",JSON.stringify(arr));
+ renderSaved();
+}
+function renderSaved(){
+ let arr=JSON.parse(localStorage.getItem("savedWords")||"[]");
+ document.getElementById("saved").innerHTML=arr.map(x=>"<li>"+x+"</li>").join("");
+}
+nextWord();
+renderSaved();
+</script>
+</body>
+</html>
