@@ -1,56 +1,12 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>小羊老师 V3</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="app">
-<h1>🐑 小羊老师 V3</h1>
-<p>每天监督飞鸟学英语</p>
-
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>小羊老师 V5</title><link rel="stylesheet" href="style.css"></head><body>
+<h1>🐑 小羊老师</h1><p>每天监督飞鸟学英语</p>
 <div class="card">
-<h3>等级</h3>
-<div id="level"></div>
-<div id="xp"></div>
-</div>
-
-<div class="card">
-<h3>📅 连续学习</h3>
-<div id="streak"></div>
-</div>
-
-<div class="card">
-<h3>📖 今日单词</h3>
-<div id="word"></div>
-<div id="phonetic"></div>
-<div id="meaning"></div>
-<div id="example"></div>
+<h2>📖 今日单词</h2>
+<div id="wordBox"></div>
 <button onclick="nextWord()">换一个</button>
-<button onclick="saveWord()">收藏(+5XP)</button>
+<button onclick="saveWord()">收藏</button>
 </div>
-
-<div class="card">
-<h3>📚 生词本</h3>
-<ul id="saved"></ul>
-</div>
-
-<div class="card">
-<h3>🐑 小羊说</h3>
-<div id="msg"></div>
-</div>
-
-<div class="card">
-<h3>🔍 搜索单词</h3>
-<input type="text" id="search" placeholder="输入单词..." oninput="searchWord()">
-<ul id="searchResults"></ul>
-</div>
-
-</div>
-
-<script src="words_1.js"></script>
-<script src="app.js"></script>
-</body>
-</html>
+<div class="card"><h2>📚 生词本</h2><div id="book"></div></div>
+<script src="words.js"></script><script src="app.js"></script>
+</body></html>
