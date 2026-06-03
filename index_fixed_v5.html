@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>小羊老师 V5</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>🐑 小羊老师</h1>
+<p>每天监督飞鸟学英语</p>
+
+<div class="card">
+  <h2>📖 今日单词</h2>
+  <div id="wordBox"></div>
+  <button onclick="nextWord()">换一个</button>
+  <button onclick="saveWord()">收藏</button>
+</div>
+
+<div class="card">
+  <h2>📚 生词本</h2>
+  <div id="book"></div>
+</div>
+
+<script src="words_real_50.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
