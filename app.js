@@ -25,7 +25,9 @@ function renderTop(){
 function nextWord(){
  current=words[Math.floor(Math.random()*words.length)];
  document.getElementById('word').innerText=current.word;
+ document.getElementById('phonetic').innerText=current.phonetic;
  document.getElementById('meaning').innerText=current.meaning;
+ document.getElementById('example').innerText=current.example;
 }
 function saveWord(){
  let arr=JSON.parse(localStorage.getItem('savedWords')||'[]');
@@ -39,7 +41,7 @@ function saveWord(){
 }
 function renderSaved(){
  let arr=JSON.parse(localStorage.getItem('savedWords')||'[]');
- document.getElementById('saved').innerHTML=arr.map(x=>'<li>'+x+'</li>').join('');
+ document.getElementById('saved').innerHTML=arr.map(x=>'<li>'+x+'</li>').join("");
 }
 function streak(){
  const today=new Date().toISOString().slice(0,10);
@@ -50,6 +52,11 @@ function streak(){
  }
  localStorage.setItem('streak',s);
  document.getElementById('streak').innerText=s+' 天';
+}
+function searchWord(){
+ const val=document.getElementById('search').value.toLowerCase();
+ const results=words.filter(w=>w.word.includes(val));
+ document.getElementById('searchResults').innerHTML=results.map(w=>'<li>'+w.word+' '+w.phonetic+' '+w.meaning+'</li>').join("");
 }
 document.getElementById('msg').innerText=msgs[Math.floor(Math.random()*msgs.length)];
 renderTop();renderSaved();streak();nextWord();
