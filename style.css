@@ -1,7 +1,7 @@
 
-body{font-family:sans-serif;background:#f6f1ea;margin:0}
-.wrap{max-width:420px;margin:auto;padding:16px}
-.card{background:#fff;border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-button{padding:10px 14px;margin:6px;border:none;border-radius:10px}
-h1{text-align:center}
-p{text-align:center}
+body{margin:0;background:#f8f3ea;font-family:sans-serif}
+.app{max-width:460px;margin:auto;padding:16px}
+.card{background:white;border-radius:16px;padding:14px;margin:12px 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+button{padding:10px 14px;border:none;border-radius:10px;margin:4px}
+h1,p{text-align:center}
+#word{font-size:28px;font-weight:bold}

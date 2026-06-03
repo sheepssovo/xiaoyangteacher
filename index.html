@@ -7,60 +7,41 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="wrap">
+<div class="app">
 <h1>🐑 小羊老师</h1>
 <p>每天监督飞鸟学英语</p>
 
 <div class="card">
-<h2>📖 今日单词</h2>
-<div id="word"></div>
-<div id="meaning"></div>
-<button onclick="nextWord()">换一个</button>
-<button onclick="saveWord()">收藏</button>
+<h3>等级</h3>
+<div id="level"></div>
+<div id="xp"></div>
 </div>
 
 <div class="card">
-<h2>📚 生词本</h2>
+<h3>📅 连续学习</h3>
+<div id="streak"></div>
+</div>
+
+<div class="card">
+<h3>📖 今日单词</h3>
+<div id="word"></div>
+<div id="meaning"></div>
+<button onclick="nextWord()">换一个</button>
+<button onclick="saveWord()">收藏(+5XP)</button>
+</div>
+
+<div class="card">
+<h3>📚 生词本</h3>
 <ul id="saved"></ul>
 </div>
 
 <div class="card">
-<h2>🐑 小羊状态</h2>
-<p id="msg"></p>
+<h3>🐑 小羊说</h3>
+<div id="msg"></div>
 </div>
 </div>
 
 <script src="words.js"></script>
-<script>
-let current;
-
-const msgs=[
-"飞鸟，欢迎回来。",
-"今天学一个单词就够了。",
-"学习五分钟也是进步。",
-"不要偷偷摸鱼哦。"
-];
-
-document.getElementById("msg").innerText =
-msgs[Math.floor(Math.random()*msgs.length)];
-
-function nextWord(){
- current=words[Math.floor(Math.random()*words.length)];
- document.getElementById("word").innerHTML="<b>"+current.word+"</b>";
- document.getElementById("meaning").innerText=current.meaning;
-}
-function saveWord(){
- let arr=JSON.parse(localStorage.getItem("savedWords")||"[]");
- arr.push(current.word);
- localStorage.setItem("savedWords",JSON.stringify(arr));
- renderSaved();
-}
-function renderSaved(){
- let arr=JSON.parse(localStorage.getItem("savedWords")||"[]");
- document.getElementById("saved").innerHTML=arr.map(x=>"<li>"+x+"</li>").join("");
-}
-nextWord();
-renderSaved();
-</script>
+<script src="app.js"></script>
 </body>
 </html>
