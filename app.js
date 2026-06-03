@@ -1,86 +1,76 @@
-const wordEl = document.getElementById('word');
-const phoneticEl = document.getElementById('phonetic');
-const meaningEl = document.getElementById('meaning');
-const exampleEl = document.getElementById('example');
-const playBtn = document.getElementById('play-pronounce');
-const nextBtn = document.getElementById('next-word');
-const saveBtn = document.getElementById('save-word');
-const vocabListEl = document.getElementById('vocab-list');
-const warningMsgEl = document.getElementById('warning-msg');
-const checkinBtn = document.getElementById('checkin-btn');
-const checkinCountEl = document.getElementById('checkin-count');
-const totalWordsEl = document.getElementById('total-words');
-const savedCountEl = document.getElementById('saved-count');
+// 今日单词索引
+let idx = Math.floor(Math.random() * words.length);
 
-let currentWordIndex = 0;
-let savedWords = JSON.parse(localStorage.getItem('savedWords')) || [];
-let checkinCount = parseInt(localStorage.getItem('checkinCount')) || 0;
+// 小羊警告
+const warnings = [
+    "飞鸟，今天单词可别忘了！",
+    "收藏了不要忘学习哦~",
+    "检测到偷懒行为~",
+    "打开生词本~",
+    "连续学习要坚持啊！",
+    "飞鸟，你已经2小时没学英语了~"
+];
 
-function showWord(index) {
-    const wordObj = words[index];
-    wordEl.textContent = wordObj.word;
-    phoneticEl.textContent = wordObj.phonetic;
-    meaningEl.textContent = wordObj.meaning;
-    exampleEl.textContent = wordObj.example;
+// 渲染函数
+function render() {
+    const w = words[idx];
+
+    // 今日单词
+    const wordBox = document.getElementById('word');
+    wordBox.innerHTML = `
+        <h3 style="font-size:20px;color:#333;">${w.word}</h3>
+        <div style="font-size:22px;font-weight:600;margin-top:10px;">${w.phonetic}</div>
+        <div style="margin-top:15px;">${w.translation}</div>
+        <div style="color:#666;margin-top:8px;">${w.example}</div>
+        <div style="color:#999;margin-top:5px;">${w.exampleTranslation}</div>
+    `;
+
+    // 美式读音按钮
+    const speakBtn = document.getElementById('speak');
+    speakBtn.onclick = () => {
+        const utterance = new SpeechSynthesisUtterance(w.word);
+        utterance.lang = 'en-US';
+        speechSynthesis.speak(utterance);
+    };
+
+    // 随机小羊警告
+    const warningDiv = document.getElementById('warning');
+    warningDiv.innerText = warnings[Math.floor(Math.random() * warnings.length)];
+
+    // 生词本
+    const book = document.getElementById('book');
+    let bookWords = JSON.parse(localStorage.getItem('bookWords') || '[]');
+    book.innerHTML = bookWords
+        .map(b => `<div style="padding:8px 0;border-bottom:1px solid #eee;"><b>${b.word}</b> - ${b.translation}</div>`)
+        .join('');
+
+    // 连续签到
+    const streak = Number(localStorage.getItem('streak') || 0);
+    document.getElementById('checkin').innerText = `已签到 ${streak} 天`;
+
+    // 学习统计
+    document.getElementById('stats').innerHTML = `
+        总单词量: ${words.length} <br>
+        已收藏: ${bookWords.length}
+    `;
 }
 
-function nextWord() {
-    currentWordIndex = (currentWordIndex + 1) % words.length;
-    showWord(currentWordIndex);
-    showWarning();
-}
+// 换一个
+document.getElementById('next').onclick = () => {
+    idx = Math.floor(Math.random() * words.length);
+    render();
+};
 
-function saveWord() {
-    const wordObj = words[currentWordIndex];
-    if (!savedWords.some(w => w.word === wordObj.word)) {
-        savedWords.push(wordObj);
-        localStorage.setItem('savedWords', JSON.stringify(savedWords));
-        updateVocab();
+// 收藏
+document.getElementById('collect').onclick = () => {
+    let bookWords = JSON.parse(localStorage.getItem('bookWords') || '[]');
+    const w = words[idx];
+    if (!bookWords.some(b => b.word === w.word)) {
+        bookWords.push({ word: w.word, translation: w.translation });
+        localStorage.setItem('bookWords', JSON.stringify(bookWords));
+        render();
     }
-}
+};
 
-function updateVocab() {
-    vocabListEl.innerHTML = '';
-    savedWords.forEach(w => {
-        const li = document.createElement('li');
-        li.textContent = w.word + ' - ' + w.meaning;
-        vocabListEl.appendChild(li);
-    });
-    savedCountEl.textContent = savedWords.length;
-}
-
-function showWarning() {
-    const messages = [
-        '不要偷懒，要坚持学习!',
-        '记得复习昨天的单词哦!',
-        '专心一点，小羊盯着你呢!',
-        '再不学习就要发出警告啦!'
-    ];
-    const msg = messages[Math.floor(Math.random() * messages.length)];
-    warningMsgEl.textContent = msg;
-}
-
-function playPronunciation() {
-    const wordObj = words[currentWordIndex];
-    const utter = new SpeechSynthesisUtterance(wordObj.word);
-    utter.lang = 'en-US';
-    speechSynthesis.speak(utter);
-}
-
-function checkin() {
-    checkinCount += 1;
-    localStorage.setItem('checkinCount', checkinCount);
-    checkinCountEl.textContent = checkinCount;
-}
-
-nextBtn.addEventListener('click', nextWord);
-saveBtn.addEventListener('click', saveWord);
-playBtn.addEventListener('click', playPronunciation);
-checkinBtn.addEventListener('click', checkin);
-
-totalWordsEl.textContent = words.length;
-checkinCountEl.textContent = checkinCount;
-
-showWord(currentWordIndex);
-updateVocab();
-showWarning();
+// 页面加载
+window.onload = render;
