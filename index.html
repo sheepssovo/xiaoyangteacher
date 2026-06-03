@@ -1,55 +1,43 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小羊老师 V6</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>小羊老师 V6</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>🐑 小羊老师 V6</h1>
-        <p>每天监督飞鸟学英语</p>
-    </header>
+  <h1>🐑 小羊老师 V6</h1>
+  <p>每天监督飞鸟学英语</p>
 
-    <main>
-        <section class="card" id="today-word-card">
-            <h2>📖 今日单词</h2>
-            <div id="wordBox">
-                <strong id="word"></strong>
-                <button id="play-pronounce" title="点击发音">🔊</button>
-                <p id="phonetic"></p>
-                <p id="meaning"></p>
-                <p id="example"></p>
-            </div>
-            <button id="next-word">换一个</button>
-            <button id="save-word">收藏</button>
-        </section>
+  <div class="card" id="today-word">
+    <h2>📖 今日单词</h2>
+    <div id="wordBox"></div>
+    <button id="changeWord">换一个</button>
+    <button id="collectWord">收藏</button>
+  </div>
 
-        <section class="card" id="vocab-card">
-            <h2>📚 生词本</h2>
-            <ul id="vocab-list"></ul>
-        </section>
+  <div class="card" id="word-book">
+    <h2>📚 生词本</h2>
+    <div id="book"></div>
+  </div>
 
-        <section class="card" id="warning-card">
-            <h2>🐑 小羊警告</h2>
-            <p id="warning-msg"></p>
-        </section>
+  <div class="card" id="warnings">
+    <h2>🐑 小羊警告</h2>
+    <div id="warning"></div>
+  </div>
 
-        <section class="card" id="checkin-card">
-            <h2>📅 连续签到</h2>
-            <button id="checkin-btn">签到</button>
-            <p>已签到 <span id="checkin-count">0</span> 天</p>
-        </section>
+  <div class="card" id="check-in">
+    <h2>📅 连续签到</h2>
+    <button id="checkinBtn">签到</button>
+    <div id="checkin"></div>
+  </div>
 
-        <section class="card" id="stats-card">
-            <h2>📊 学习统计</h2>
-            <p>总单词量: <span id="total-words">0</span></p>
-            <p>已收藏: <span id="saved-count">0</span></p>
-        </section>
-    </main>
+  <div class="card" id="statistics">
+    <h2>📊 学习统计</h2>
+    <div id="stats"></div>
+  </div>
 
-    <script src="words_real_50.js"></script>
-    <script src="app.js"></script>
+  <script src="words_real_50.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
